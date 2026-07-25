@@ -14,14 +14,17 @@ MYSQL_PORT = 3308
 MYSQL_DATABASE = "retail_dwh_apr_2026"
 
 
-# AWS details
+# AWS - S3 details
+BUCKET_NAME = "sales-data-bkt-apr26"
+FILE_KEY = "test_data/sales_data_s3.csv"
+
 
 
 
 #Linux server details
-LINUX_HOSTNAME = "192.168.0.6"
+LINUX_HOSTNAME = "192.168.0.7"
 LINUX_USERNAME = "etlqalabs"
 LINUX_PASSWORD = "root"
 LINUX_REMOTE_FILE_PATH = "/home/etlqalabs/product_data.csv"
-LOCAL_FILE_PATH ="Sources/product_data_from_linux_jul18.csv"
+LOCAL_FILE_PATH ="testData/product_data_from_linux.csv"
 
