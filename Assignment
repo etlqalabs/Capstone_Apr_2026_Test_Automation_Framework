@@ -5,26 +5,3 @@
 # Day 4:
 3. Implement the utilify function for db_to_db validation
 4. use the same fucntion in db_to_db related test case
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-s3://sales-data-bkt-apr26/test_data/sales_data_s3.csv
-

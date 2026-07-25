@@ -7,6 +7,7 @@ import pytest
 import boto3
 from io import StringIO
 import paramiko
+import os
 
 
 
@@ -45,7 +46,7 @@ class BaseUtility:
             csv_content = response['Body'].read().decode('utf-8')
             data = StringIO(csv_content)
             df = pd.read_csv(data)
-            print(df)
+            logger.info(f"S3 data ia :{df}")
             return df
         except Exception as e:
             logger.error(f"S3 file read failed {e}")
@@ -95,18 +96,32 @@ class ValidationUtility(BaseUtility):
 
             # expected minus actual
             df_extra_expected= df_expected[~df_expected.apply(tuple,axis=1).isin(df_actual.apply(tuple,axis=1))]
-            df_extra_expected.to_csv(f"differences/extra_row_expected_{test_case_name}.csv",index=False)
-
+            
             # actual minus expected
             df_extra_actual = df_actual[~df_actual.apply(tuple, axis=1).isin(df_expected.apply(tuple, axis=1))]
-            df_extra_actual.to_csv(f"differences/extra_row_actual_{test_case_name}.csv", index=False)
+
+            # Create difference files only when differences exist
+            if not df_extra_expected.empty or not df_extra_actual.empty:
+                os.makedirs("differences", exist_ok=True)
+
+                if not df_extra_expected.empty:
+                    df_extra_expected.to_csv(
+                        f"differences/extra_row_expected_{test_case_name}.csv",
+                        index=False
+                    )
+
+                if not df_extra_actual.empty:
+                    df_extra_actual.to_csv(
+                        f"differences/extra_row_actual_{test_case_name}.csv",
+                        index=False
+                    )
+
 
             #assertion
             assert df_actual.equals(df_expected),f"{test_case_name} failed"
             logger.info(f"{test_case_name} passed")
         except Exception as e:
             logger.error(f"{test_case_name} validation failed :{e}")
-            logger.error(test_case_name,"validation failed :",e)
             pytest.fail()
 
 
@@ -125,11 +140,25 @@ class ValidationUtility(BaseUtility):
 
             # expected minus actual
             df_extra_expected= df_expected[~df_expected.apply(tuple,axis=1).isin(df_actual.apply(tuple,axis=1))]
-            df_extra_expected.to_csv(f"differences/extra_row_expected_{test_case_name}.csv",index=False)
 
             # actual minus expected
             df_extra_actual = df_actual[~df_actual.apply(tuple, axis=1).isin(df_expected.apply(tuple, axis=1))]
-            df_extra_actual.to_csv(f"differences/extra_row_actual_{test_case_name}.csv", index=False)
+
+            # Create difference files only when differences exist
+            if not df_extra_expected.empty or not df_extra_actual.empty:
+                os.makedirs("differences", exist_ok=True)
+
+                if not df_extra_expected.empty:
+                    df_extra_expected.to_csv(
+                        f"differences/extra_row_expected_{test_case_name}.csv",
+                        index=False
+                    )
+
+                if not df_extra_actual.empty:
+                    df_extra_actual.to_csv(
+                        f"differences/extra_row_actual_{test_case_name}.csv",
+                        index=False
+                    )
 
             #assertion
             assert df_actual.equals(df_expected),f"{test_case_name} failed"
@@ -138,8 +167,3 @@ class ValidationUtility(BaseUtility):
             logger.error(f"{test_case_name} validation failed :{e}")
             logger.error(test_case_name,"validation failed :",e)
             pytest.fail()
-
-
-
-
-

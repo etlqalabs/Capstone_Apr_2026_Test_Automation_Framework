@@ -43,11 +43,13 @@ class TestDataExtraction:
             )
         except Exception as e:
             logger.error(f"Sales data extraction validation failed {e}")
+            pytest.fail()
 
     def test_data_extraction_from_products_file_to_stag(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
-            self.linux_utility_download_file_from_linux_server()
+            #self.linux_utility_download_file_from_linux_server()
+            self.validation_utility.linux_utility_download_file_from_linux_server()
             query_actual = """select * from stag_products"""
             self.validation_utility.execute_validation(
                 validation_type="FILE_TO_DB",
@@ -59,12 +61,14 @@ class TestDataExtraction:
             )
         except Exception as e:
             logger.error(f"product data extraction validation failed {e}")
+            pytest.fail()
+
 
     @pytest.mark.skip
     def test_data_extraction_from_inventory_file_to_stag(self):
         pass
 
-    @pytest.mark.skip
+
     def test_data_extraction_from_supplier_file_to_stag(self):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -79,6 +83,7 @@ class TestDataExtraction:
             )
         except Exception as e:
             logger.error(f"product data extraction validation failed {e}")
+            pytest.fail()
 
     @pytest.mark.skip
     def test_data_extraction_from_stores_oracle_to_stag_mysql(self):
