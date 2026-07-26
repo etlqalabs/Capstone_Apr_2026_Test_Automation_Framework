@@ -5,3 +5,13 @@
 # Day 4:
 3. Implement the utilify function for db_to_db validation
 4. use the same fucntion in db_to_db related test case
+
+
+# Day 5:
+5. Implement the remaining test case for data transformation
+6. Data loading :
+    a) test_data_loading_for_fact_sales , fixed the decimal issue and pass the test case
+    b) Implement remaining 2 test cases
+7. Schema validation tests:
+   a)   column_names check for remaining 2 tables
+   b)   data types check for remaining 3 tables

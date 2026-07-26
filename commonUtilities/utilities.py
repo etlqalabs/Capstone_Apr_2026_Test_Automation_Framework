@@ -126,7 +126,42 @@ class ValidationUtility(BaseUtility):
 
 
     def validate_db_to_db(self,test_case_name,query_expected,db_expected,query_actual,db_actual):
-        pass
+        try:
+            df_expected = pd.read_sql(query_expected, db_expected).astype(str)
+            logger.info(f"expected data: {df_expected}")
+
+            df_actual = pd.read_sql(query_actual, db_actual).astype(str)
+            logger.info(f"actual data: {df_actual}")
+
+            # expected minus actual
+            df_extra_expected = df_expected[~df_expected.apply(tuple, axis=1).isin(df_actual.apply(tuple, axis=1))]
+
+            # actual minus expected
+            df_extra_actual = df_actual[~df_actual.apply(tuple, axis=1).isin(df_expected.apply(tuple, axis=1))]
+
+            # Create difference files only when differences exist
+            if not df_extra_expected.empty or not df_extra_actual.empty:
+                os.makedirs("differences", exist_ok=True)
+
+                if not df_extra_expected.empty:
+                    df_extra_expected.to_csv(
+                        f"differences/extra_row_expected_{test_case_name}.csv",
+                        index=False
+                    )
+
+                if not df_extra_actual.empty:
+                    df_extra_actual.to_csv(
+                        f"differences/extra_row_actual_{test_case_name}.csv",
+                        index=False
+                    )
+
+            # assertion
+            assert df_actual.equals(df_expected), f"{test_case_name} failed"
+            logger.info(f"{test_case_name} passed")
+        except Exception as e:
+            logger.error(f"{test_case_name} validation failed :{e}")
+            pytest.fail()
+
 
 
     def validate_s3_to_db(self,test_case_name,bucket_name,file_key,query_actual,db_actual):
@@ -165,5 +200,31 @@ class ValidationUtility(BaseUtility):
             logger.info(f"{test_case_name} passed")
         except Exception as e:
             logger.error(f"{test_case_name} validation failed :{e}")
-            logger.error(test_case_name,"validation failed :",e)
             pytest.fail()
+
+class SchemaValidation(BaseUtility):
+    def validate_column_names(self,db_conn,table_name,expected_columns):
+        query = f"select * from {table_name}"
+        df = pd.read_sql(query,db_conn)
+        actual_columns = list(df.columns)
+
+        assert actual_columns == expected_columns,(
+            f"\nColumn mismatch in table {table_name}"
+            f"\nexpected columns :{expected_columns}"
+            f"\nactual columns :{actual_columns}"
+        )
+
+    def validate_columns_dataTypes(self, db_conn, table_name, expected_datatypes):
+        query = f"select * from {table_name}"
+        df = pd.read_sql(query, db_conn)
+        for column_name,allowed_datatypes in expected_datatypes.items():
+            actual_data_type = df[column_name].dtype
+            assert actual_data_type in allowed_datatypes,(
+                f"\ndata type mismatch in table {table_name}"
+                f"\n column :{column_name}"
+                f"\nactual data type :{actual_data_type}"
+                f"\nexpected data type :{allowed_datatypes}"
+            )
+
+
+

@@ -18,19 +18,13 @@ logging.basicConfig(
    )
 logger = logging.getLogger(__name__)
 
-# Database connections
-
-oracle_conn = create_engine(f"oracle+cx_oracle://{ORACLE_USER}:{ORACLE_PASSWORD}@{ORACLE_HOST}:{ORACLE_PORT}/{ORACLE_SERVICE}")
-mysql_conn = create_engine(F"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}")
-
-
-
+@pytest.mark.usefixtures("connect_to_oracle_database","connect_to_mysql_database")
 class TestDataExtraction:
     validation_utility = ValidationUtility()
     base_utility = BaseUtility()
 
     @pytest.mark.skip
-    def test_data_extraction_from_sales_file_to_stag(self):
+    def test_data_extraction_from_sales_file_to_stag(self,connect_to_mysql_database):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
             query_actual = """select * from stag_sales"""
@@ -40,13 +34,13 @@ class TestDataExtraction:
                 bucket_name=BUCKET_NAME,
                 file_key=FILE_KEY,
                 query_actual = query_actual,
-                db_actual= mysql_conn
+                db_actual= connect_to_mysql_database
             )
         except Exception as e:
             self.base_utility.log_error(f"{test_case_name} validation failed: {e}")
             pytest.fail()
 
-    def test_data_extraction_from_products_file_to_stag(self):
+    def test_data_extraction_from_products_file_to_stag(self,connect_to_mysql_database):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
             self.base_utility.log_info(f"===== Starting test: {test_case_name} =====")
@@ -61,7 +55,7 @@ class TestDataExtraction:
                 file_path=LOCAL_FILE_PATH,
                 file_type="csv",
                 query_actual = query_actual,
-                db_actual= mysql_conn
+                db_actual= connect_to_mysql_database
             )
         except Exception as e:
             self.base_utility.log_error(f"{test_case_name} validation failed: {e}")
@@ -69,11 +63,11 @@ class TestDataExtraction:
 
 
     @pytest.mark.skip
-    def test_data_extraction_from_inventory_file_to_stag(self):
+    def test_data_extraction_from_inventory_file_to_stag(self,connect_to_mysql_database):
         pass
 
 
-    def test_data_extraction_from_supplier_file_to_stag(self):
+    def test_data_extraction_from_supplier_file_to_stag(self,connect_to_mysql_database):
         test_case_name = inspect.currentframe().f_code.co_name
 
         try:
@@ -87,7 +81,7 @@ class TestDataExtraction:
                 file_path="testData/supplier_data.json",
                 file_type="json",
                 query_actual=query_actual,
-                db_actual=mysql_conn
+                db_actual=connect_to_mysql_database
             )
             self.base_utility.log_info(f"===== Test Passed: {test_case_name} =====")
 
@@ -98,5 +92,5 @@ class TestDataExtraction:
 
 
     @pytest.mark.skip
-    def test_data_extraction_from_stores_oracle_to_stag_mysql(self):
+    def test_data_extraction_from_stores_oracle_to_stag_mysql(self,connect_to_oracle_database,connect_to_mysql_database):
         pass
