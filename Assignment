@@ -15,3 +15,12 @@
 7. Schema validation tests:
    a)   column_names check for remaining 2 tables
    b)   data types check for remaining 3 tables
+
+# Day 6:
+1. Implement test cases for SCD type 2 , type 3 validation
+2. Implement Referential Integrity checks for Sales_id and store_id related test case
+3. Implement Data Quality check for all the input files at record level ( utility funtion + test cases)
+4. Implement Data Quality check for all the input files at specific column level  ( utility funtion + test cases)
+5. Implement Data Quality check for all the database sources and target at record level ( utility funtion + test cases)
+6. Data Quality check for all the database sources and target at column level ( utility funtion + test cases)
+

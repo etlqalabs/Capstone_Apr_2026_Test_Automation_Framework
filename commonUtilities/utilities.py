@@ -75,7 +75,6 @@ class BaseUtility:
     def log_error(self,message):
         logger.error(message)
 
-
 class ValidationUtility(BaseUtility):
     #Polymorphism
     def execute_validation(self,validation_type,test_case_name,bucket_name=None,file_key=None,file_path=None,file_type=None,query_expected=None,db_expected=None,query_actual=None,db_actual=None):
@@ -226,5 +225,77 @@ class SchemaValidation(BaseUtility):
                 f"\nexpected data type :{allowed_datatypes}"
             )
 
+    def checkReferentialIntegrity(self,source_db_conn,target_db_conn,foreign_query,primary_query,key_column,csv_path):
+            foreign_df = pd.read_sql(foreign_query,source_db_conn)
+            primary_df = pd.read_sql(primary_query, target_db_conn)
+            df_not_matched = foreign_df[~foreign_df[key_column].isin(primary_df[key_column])]
+            df_not_matched.to_csv(csv_path,index=False)
+            return df_not_matched
 
+class DataQualityUtility(BaseUtility):
+
+    # Duplicate check for complete file
+    def checkDuplicateInFile(self, file_path, file_type):
+        df = self.read_file(file_path, file_type)
+        return not df.duplicated().any()
+
+    # Duplicate check for a specific column
+    def checkDuplicateValuesInFile(self, file_path, file_type, column_name):
+        df = self.read_file(file_path, file_type)
+
+        if df[column_name].duplicated().any():
+            return False
+        return True
+
+    # Duplicate check in database
+    def checkDuplicateInDatabase(self, query, db_conn):
+        df = pd.read_sql(query, db_conn)
+        return not df.duplicated().any()
+
+    # Duplicate check for a specific database column
+    def checkDuplicateForSpecificColumnInDatabase(self, query, db_conn, column_name):
+        df = pd.read_sql(query, db_conn)
+
+        if df[column_name].duplicated().any():
+            return False
+        return True
+
+    # Null check for complete file
+    def checkNullValuesInFile(self, file_path, file_type):
+        df = self.read_file(file_path, file_type)
+        return not df.isnull().values.any()
+
+    # Null check for specific column
+    def checkNullValuesForSpecificColumnInFile(self, file_path, file_type, column_name):
+        df = self.read_file(file_path, file_type)
+
+        if df[column_name].isnull().any():
+            return False
+        return True
+
+    # Null check in database
+    def checkNullValuesInDatabase(self, query, db_conn):
+        df = pd.read_sql(query, db_conn)
+        return not df.isnull().values.any()
+
+    # Null check for specific database column
+    def checkNullValuesForSpecificColumnInDatabase(self, query, db_conn, column_name):
+        df = pd.read_sql(query, db_conn)
+
+        if df[column_name].isnull().any():
+            return False
+        return True
+
+class FileUtility(BaseUtility):
+
+    def check_file_existence(self,file_path):
+        return os.path.isfile(file_path)
+
+    import os
+
+    def check_file_size(self, file_path):
+        if not os.path.exists(file_path):
+            return False
+
+        return os.path.getsize(file_path) > 0
 
