@@ -1,9 +1,47 @@
-2026-08-02 10:16:28,959-INFO-Oracle database connection being established..22026-08-02 10:16:29,538-INFO-Oracle database connection has been established..
-2026-08-02 10:16:29,539-INFO-mysql database connection being established..
-2026-08-02 10:16:29,592-INFO-mysql database connection has been established..
-2026-08-02 10:16:29,594-INFO-===== Starting test: test_data_extraction_from_supplier_file_to_stag =====
-2026-08-02 10:16:29,596-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:29,597-INFO-Step 2: Validating supplier JSON data with s2026-08-02 10:12026-08-02 10:16:29,700-INFO-expected data:    supplier_id         supplier_name  ... rating last_order_date
+2026-08-02 10:33:33,420-INFO-mysql database connection being established..
+22026-08-02 10:33:33,852-INFO-Oracle database connection has been established..
+2026-08-02 10:33:33,853-INFO-mysql database connection being established..
+2026-08-02 10:33:33,890-INFO-mysql database connection has been established..
+2026-08-02 10:33:33,892-INFO-===== Starting test: test_data_extraction_from_products_file_to_stag =====
+2026-08-02 10:33:33,892-INFO-Step 1: Downloading products file from Linux server.
+2026-08-02 10:33:33,894-INFO-Products file downloaded successfully.
+2026-08-02 10:33:33,992-INFO-expected data:    product_id        product_name     category  ...  stock_quantity    brand rating
+0         101           iPhone 15  Smartphones  ...              50    Apple    4.8
+1         102  Samsung Galaxy S23  Smartphones  ...              75  Samsung    4.7
+2         103         Dell XPS 13      Laptops  ...              30     Dell    4.6
+3         104      MacBook Pro 14      Laptops  ...              25    Apple    4.9
+4         105     Sony WH-1000XM5   Headphones  ...             100     Sony    4.7
+5         106       Nike Air Zoom     Sneakers  ...             200     Nike    4.5
+6         107      Samsung 55" TV  Electronics  ...              40  Samsung    4.4
+7         108    Philips Hue Bulb   Smart Home  ...             500  Philips    4.8
+8         109     Fitbit Charge 5    Wearables  ...             150   Fitbit    4.6
+9         110   Kindle Paperwhite     eReaders  ...              80   Amazon    4.7
+
+[10 rows x 7 columns]
+2026-08-02 10:33:34,113-INFO-actual data:    product_id        product_name     category  ...  stock_quantity    brand rating
+0         101           iPhone 15  Smartphones  ...              50    Apple    4.8
+1         102  Samsung Galaxy S23  Smartphones  ...              75  Samsung    4.7
+2         103         Dell XPS 13      Laptops  ...              30     Dell    4.6
+3         104      MacBook Pro 14      Laptops  ...              25    Apple    4.9
+4         105     Sony WH-1000XM5   Headphones  ...             100     Sony    4.7
+5         106       Nike Air Zoom     Sneakers  ...             200     Nike    4.5
+6         107      Samsung 55" TV  Electronics  ...              40  Samsung    4.4
+7         108    Philips Hue Bulb   Smart Home  ...             500  Philips    4.8
+8         109     Fitbit Charge 5    Wearables  ...             150   Fitbit    4.6
+9         110   Kindle Paperwhite     eReaders  ...              80   Amazon    4.7
+
+[10 rows x 7 columns]
+2026-08-02 10:33:34,145-INFO-test_data_extraction_from_products_file_to_stag passed
+2026-08-02 10:33:34,149-INFO-mysql database connection has been terminated..
+2026-08-02 10:33:34,150-INFO-Oracle database connection has been terminated..
+2026-08-02 10:33:34,177-INFO-Oracle database connection being established..
+2026-08-02 10:33:34,483-INFO-Oracle database connection has been established..
+2026-08-02 10:33:34,484-INFO-mysql database connection being established..
+2026-08-02 10:33:34,521-INFO-mysql database connection has been established..
+2026-08-02 10:33:34,523-INFO-===== Starting test: test_data_extraction_from_supplier_file_to_stag =====
+2026-08-02 10:33:34,523-INFO-Step 1: Preparing database query for validation.
+2026-08-02 10:33:34,525-INFO-Step 2: Validating supplier JSON data with staging table.
+2026-08-02 10:33:34,622-INFO-expected data:    supplier_id         supplier_name  ... rating last_order_date
 0            1      ABC Distributors  ...    4.8      2024-11-20
 1            2     Global Goods Inc.  ...    4.3      2024-11-19
 2            3   GreenTech Solutions  ...    4.6      2024-11-18
@@ -16,7 +54,7 @@
 9           10         LatAm Imports  ...    4.5      2024-11-20
 
 [10 rows x 8 columns]
-2026-08-02 10:16:29,810-INFO-actual data:    supplier_id         supplier_name  ... rating last_order_date
+2026-08-02 10:33:34,704-INFO-actual data:    supplier_id         supplier_name  ... rating last_order_date
 0            1      ABC Distributors  ...    4.8      2024-11-20
 1            2     Global Goods Inc.  ...    4.3      2024-11-19
 2            3   GreenTech Solutions  ...    4.6      2024-11-18
@@ -29,63 +67,17 @@
 9           10         LatAm Imports  ...    4.5      2024-11-20
 
 [10 rows x 8 columns]
-2026-08-02 10:16:29,837-INFO-test_data_extraction_from_supplier_file_to_stag passed
-2026-08-02 10:16:29,838-INFO-===== Test Passed: test_data_extraction_from_supplier_file_to_stag =====
-2026-08-02 10:16:29,843-INFO-mysql database connection has been terminated..
-2026-08-02 10:16:29,850-INFO-Oracle database connection has been terminated..
-2026-08-02 10:16:29,868-INFO-mysql database connection being established..
-2026-08-02 10:16:29,896-INFO-mysql database connection has been established..
-2026-08-02 10:16:29,902-INFO-===== Starting test: test_data_quality_duplicate_check_for_product_data_csv_file =====
-2026-08-02 10:16:29,917-INFO-Duplicate Status : True
-2026-08-02 10:16:29,918-INFO-===== Test Passed: test_data_quality_duplicate_check_for_product_data_csv_file =====
-2026-08-02 10:16:29,921-INFO-mysql database connection has been terminated..
-ing_for_fact_sales =====
-2026-08-02 10:16:29,781-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:29,781-INFO-Step 2: Validating data loading for fact_sales
-2026-08-02 10:16:29,870-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
-0        10        110        4        9       153.0  2024-09-10
-1        11        101        4       15       210.0  2024-09-11
-2        12        102        5        9       243.0  2024-09-12
-3        13        103        6       10       220.0  2024-09-13
-4        14        104        7        8       248.0  2024-09-14
-5        15        105        4       12       132.0  2024-09-15
-6        16        106        5        5       115.0  2024-09-16
-7        17        107        6        3        78.0  2024-09-17
-8        18        108        7        6       168.0  2024-09-18
-9        19        109        8       11       220.0  2024-09-19
-10       20        110        9        9       175.5  2024-09-20
-11       21        101        1       14       217.0  2024-09-21
-12       22        102        2        8       176.0  2024-09-22
-13       23        103        3        7       126.0  2024-09-23
-14       24        104        4        6       150.0  2024-09-24
-15       25        105        2       12       162.0  2024-09-25
-16       26        106        3        5       105.0  2024-09-26
-17       27        107        1       10       190.0  2024-09-27
-18       28        108        5        6       162.0  2024-09-28
-19       29        109        6        9       216.0  2024-09-29
-20       30        110        7        7       164.5  2024-09-30
-21       31        101        4       13       188.5  2024-10-01
-22       32        102        5        6       174.0  2024-10-02
-23       33        103        6        8       168.0  2024-10-03
-24       34        104        7        5       150.0  2024-10-04
-25       35        105        4        7       105.0  2024-10-05
-26       36        106        5        3        75.0  2024-10-06
-27       37        107        6       12       216.0  2024-10-07
-28       38        108        7        9       180.0  2024-10-08
-29       39        109        8       10       220.0  2024-10-09
-30       40        110        9        6       156.0  2024-10-10
-31       41        101        3        5        75.0  2024-10-11
-32       42        102        4        4        80.0  2024-10-12
-33       43        103        5        9       171.0  2024-10-13
-34       44        104        6        7       196.0  2024-10-14
-35       45        105        7       10       250.0  2024-10-15
-36       46        106        8        8       180.0  2024-10-16
+2026-08-02 10:33:34,718-INFO-test_data_extraction_from_supplier_file_to_stag passed
+2026-08-02 10:33:34,719-INFO-===== Test Passed: test_data_extraction_from_supplier_file_to_stag =====
+2026-08-02 10:33:34,720-INFO-mysql database connection has been terminated..
+2026-08-02 10:33:34,723-INFO-Oracle database connection has been terminated..
+     180.0  2024-10-16
 37       47        107        9        6       144.0  2024-10-17
 38       48        108        1        3        81.0  2024-10-18
 39       49        109        2       11       203.5  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:29,973-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
+2026-08-02 10:33:33,781-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10     100000        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -128,14 +120,14 @@ ing_for_fact_sales =====
 39       49        109        2       11       204.0  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:30,026-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
-2026-08-02 10:16:31,462-INFO-mysql database connection has been terminated..
-2026-08-02 10:16:36,483-INFO-mysql database connection being established..
-2026-08-02 10:16:36,507-INFO-mysql database connection has been established..
-2026-08-02 10:16:36,509-INFO-===== Starting test: test_data_loading_for_fact_sales =====
-2026-08-02 10:16:36,509-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:36,509-INFO-Step 2: Validating data loading for fact_sales
-2026-08-02 10:16:36,532-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
+2026-08-02 10:33:33,818-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
+2026-08-02 10:33:35,497-INFO-mysql database connection has been terminated..
+2026-08-02 10:33:40,568-INFO-mysql database connection being established..
+2026-08-02 10:33:40,602-INFO-mysql database connection has been established..
+2026-08-02 10:33:40,607-INFO-===== Starting test: test_data_loading_for_fact_sales =====
+2026-08-02 10:33:40,608-INFO-Step 1: Preparing database query for validation.
+2026-08-02 10:33:40,609-INFO-Step 2: Validating data loading for fact_sales
+2026-08-02 10:33:40,716-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10        110        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -178,7 +170,7 @@ ing_for_fact_sales =====
 39       49        109        2       11       203.5  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:36,573-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
+2026-08-02 10:33:40,838-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10     100000        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -221,14 +213,14 @@ ing_for_fact_sales =====
 39       49        109        2       11       204.0  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:36,588-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
-2026-08-02 10:16:36,656-INFO-mysql database connection has been terminated..
-2026-08-02 10:16:41,674-INFO-mysql database connection being established..
-2026-08-02 10:16:41,701-INFO-mysql database connection has been established..
-2026-08-02 10:16:41,702-INFO-===== Starting test: test_data_loading_for_fact_sales =====
-2026-08-02 10:16:41,702-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:41,703-INFO-Step 2: Validating data loading for fact_sales
-2026-08-02 10:16:41,739-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
+2026-08-02 10:33:40,894-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
+2026-08-02 10:33:41,049-INFO-mysql database connection has been terminated..
+2026-08-02 10:33:46,128-INFO-mysql database connection being established..
+2026-08-02 10:33:46,215-INFO-mysql database connection has been established..
+2026-08-02 10:33:46,220-INFO-===== Starting test: test_data_loading_for_fact_sales =====
+2026-08-02 10:33:46,221-INFO-Step 1: Preparing database query for validation.
+2026-08-02 10:33:46,222-INFO-Step 2: Validating data loading for fact_sales
+2026-08-02 10:33:46,333-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10        110        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -271,7 +263,7 @@ ing_for_fact_sales =====
 39       49        109        2       11       203.5  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:41,784-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
+2026-08-02 10:33:46,455-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10     100000        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -314,5 +306,5 @@ ing_for_fact_sales =====
 39       49        109        2       11       204.0  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:41,803-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
-2026-08-02 10:16:41,860-INFO-mysql database connection has been terminated..
+2026-08-02 10:33:46,506-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
+2026-08-02 10:33:46,668-INFO-mysql database connection has been terminated..

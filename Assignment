@@ -25,4 +25,6 @@
 6. Data Quality check for all the database sources and target at column level ( utility funtion + test cases)
 
 # Day 7:
-
+1. Create a jenkins job for DQ test cases and schedule to run at Monday 5:00 am IST
+2. Configure email notification if the Jenkins jobs fails.
+   Hint : Post Build action
