@@ -24,7 +24,7 @@ class TestDataLoading:
     validation_utility = ValidationUtility()
     base_utility = BaseUtility()
 
-
+    @pytest.mark.regression
     def test_data_loading_for_monthly_sales_summary(self,connect_to_mysql_database):
         test_case_name = inspect.currentframe().f_code.co_name
 
@@ -51,6 +51,8 @@ class TestDataLoading:
             self.base_utility.log_error(f"Reason: {e}")
             pytest.fail(str(e))
 
+    @pytest.mark.regression
+    @pytest.mark.regression
     def test_data_loading_for_fact_sales(self,connect_to_mysql_database):
         test_case_name = inspect.currentframe().f_code.co_name
 

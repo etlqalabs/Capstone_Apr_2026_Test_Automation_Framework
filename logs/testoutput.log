@@ -1,9 +1,9 @@
-2026-08-02 10:16:28,959-INFO-Oracle database connection being established..22026-08-02 10:16:29,538-INFO-Oracle database connection has been established..
-2026-08-02 10:16:29,539-INFO-mysql database connection being established..
-2026-08-02 10:16:29,592-INFO-mysql database connection has been established..
-2026-08-02 10:16:29,594-INFO-===== Starting test: test_data_extraction_from_supplier_file_to_stag =====
-2026-08-02 10:16:29,596-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:29,597-INFO-Step 2: Validating supplier JSON data with s2026-08-02 10:12026-08-02 10:16:29,700-INFO-expected data:    supplier_id         supplier_name  ... rating last_order_date
+INFO     conftest:conftest.py:24 Oracle database connection being established..IINFO     conftest:conftest.py:27 Oracle database connection has been established..
+INFO     conftest:conftest.py:35 mysql database connection being established..
+INFO     conftest:conftest.py:38 mysql database connection has been established..
+INFO     commonUtilities.utilities:utilities.py:73 ===== Starting test: test_data_extraction_from_supplier_file_to_stag =====
+INFO     commonUtilities.utilities:utilities.py:73 Step 1: Preparing database query for validation.
+INFO     commonUtilities.utilities:utilities.py:73 Step 2: Validating supplier JSON data with sINFO     commonINFO     commonUtilities.utilities:utilities.py:91 expected data:    supplier_id         supplier_name  ... rating last_order_date
 0            1      ABC Distributors  ...    4.8      2024-11-20
 1            2     Global Goods Inc.  ...    4.3      2024-11-19
 2            3   GreenTech Solutions  ...    4.6      2024-11-18
@@ -16,7 +16,7 @@
 9           10         LatAm Imports  ...    4.5      2024-11-20
 
 [10 rows x 8 columns]
-2026-08-02 10:16:29,810-INFO-actual data:    supplier_id         supplier_name  ... rating last_order_date
+INFO     commonUtilities.utilities:utilities.py:94 actual data:    supplier_id         supplier_name  ... rating last_order_date
 0            1      ABC Distributors  ...    4.8      2024-11-20
 1            2     Global Goods Inc.  ...    4.3      2024-11-19
 2            3   GreenTech Solutions  ...    4.6      2024-11-18
@@ -29,20 +29,19 @@
 9           10         LatAm Imports  ...    4.5      2024-11-20
 
 [10 rows x 8 columns]
-2026-08-02 10:16:29,837-INFO-test_data_extraction_from_supplier_file_to_stag passed
-2026-08-02 10:16:29,838-INFO-===== Test Passed: test_data_extraction_from_supplier_file_to_stag =====
-2026-08-02 10:16:29,843-INFO-mysql database connection has been terminated..
-2026-08-02 10:16:29,850-INFO-Oracle database connection has been terminated..
-2026-08-02 10:16:29,868-INFO-mysql database connection being established..
-2026-08-02 10:16:29,896-INFO-mysql database connection has been established..
-2026-08-02 10:16:29,902-INFO-===== Starting test: test_data_quality_duplicate_check_for_product_data_csv_file =====
-2026-08-02 10:16:29,917-INFO-Duplicate Status : True
-2026-08-02 10:16:29,918-INFO-===== Test Passed: test_data_quality_duplicate_check_for_product_data_csv_file =====
-2026-08-02 10:16:29,921-INFO-mysql database connection has been terminated..
-ing_for_fact_sales =====
-2026-08-02 10:16:29,781-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:29,781-INFO-Step 2: Validating data loading for fact_sales
-2026-08-02 10:16:29,870-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
+INFO     commonUtilities.utilities:utilities.py:121 test_data_extraction_from_supplier_file_to_stag passed
+INFO     commonUtilities.utilities:utilities.py:73 ===== Test Passed: test_data_extraction_from_supplier_file_to_stag =====
+INFO     conftest:conftest.py:41 mysql database connection has been terminated..
+INFO     conftest:conftest.py:30 Oracle database connection has been terminated..
+INFO     conftest:conftest.py:35 mysql database connection being established..
+INFO     conftest:conftest.py:38 mysql database connection has been established..
+INFO     commonUtilities.utilities:utilities.py:73 ===== Starting test: test_data_quality_duplicate_check_for_product_data_csv_file =====
+INFO     testScripts.test_data_quality:test_data_quality.py:48 Duplicate Status : True
+INFO     commonUtilities.utilities:utilities.py:73 ===== Test Passed: test_data_quality_duplicate_check_for_product_data_csv_file =====
+INFO     conftest:conftest.py:41 mysql database connection has been terminated..
+1: Preparing database query for validation.
+INFO     commonUtilities.utilities:utilities.py:73 Step 2: Validating data loading for fact_sales
+INFO     commonUtilities.utilities:utilities.py:130 expected data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10        110        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -85,7 +84,7 @@ ing_for_fact_sales =====
 39       49        109        2       11       203.5  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:29,973-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
+INFO     commonUtilities.utilities:utilities.py:133 actual data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10     100000        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -128,14 +127,14 @@ ing_for_fact_sales =====
 39       49        109        2       11       204.0  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:30,026-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
-2026-08-02 10:16:31,462-INFO-mysql database connection has been terminated..
-2026-08-02 10:16:36,483-INFO-mysql database connection being established..
-2026-08-02 10:16:36,507-INFO-mysql database connection has been established..
-2026-08-02 10:16:36,509-INFO-===== Starting test: test_data_loading_for_fact_sales =====
-2026-08-02 10:16:36,509-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:36,509-INFO-Step 2: Validating data loading for fact_sales
-2026-08-02 10:16:36,532-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
+ERROR    commonUtilities.utilities:utilities.py:161 test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
+INFO     conftest:conftest.py:41 mysql database connection has been terminated..
+INFO     conftest:conftest.py:35 mysql database connection being established..
+INFO     conftest:conftest.py:38 mysql database connection has been established..
+INFO     commonUtilities.utilities:utilities.py:73 ===== Starting test: test_data_loading_for_fact_sales =====
+INFO     commonUtilities.utilities:utilities.py:73 Step 1: Preparing database query for validation.
+INFO     commonUtilities.utilities:utilities.py:73 Step 2: Validating data loading for fact_sales
+INFO     commonUtilities.utilities:utilities.py:130 expected data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10        110        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -178,7 +177,7 @@ ing_for_fact_sales =====
 39       49        109        2       11       203.5  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:36,573-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
+INFO     commonUtilities.utilities:utilities.py:133 actual data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10     100000        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -221,14 +220,14 @@ ing_for_fact_sales =====
 39       49        109        2       11       204.0  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:36,588-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
-2026-08-02 10:16:36,656-INFO-mysql database connection has been terminated..
-2026-08-02 10:16:41,674-INFO-mysql database connection being established..
-2026-08-02 10:16:41,701-INFO-mysql database connection has been established..
-2026-08-02 10:16:41,702-INFO-===== Starting test: test_data_loading_for_fact_sales =====
-2026-08-02 10:16:41,702-INFO-Step 1: Preparing database query for validation.
-2026-08-02 10:16:41,703-INFO-Step 2: Validating data loading for fact_sales
-2026-08-02 10:16:41,739-INFO-expected data:    sales_id product_id store_id quantity total_sales   sale_date
+ERROR    commonUtilities.utilities:utilities.py:161 test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
+INFO     conftest:conftest.py:41 mysql database connection has been terminated..
+INFO     conftest:conftest.py:35 mysql database connection being established..
+INFO     conftest:conftest.py:38 mysql database connection has been established..
+INFO     commonUtilities.utilities:utilities.py:73 ===== Starting test: test_data_loading_for_fact_sales =====
+INFO     commonUtilities.utilities:utilities.py:73 Step 1: Preparing database query for validation.
+INFO     commonUtilities.utilities:utilities.py:73 Step 2: Validating data loading for fact_sales
+INFO     commonUtilities.utilities:utilities.py:130 expected data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10        110        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -271,7 +270,7 @@ ing_for_fact_sales =====
 39       49        109        2       11       203.5  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:41,784-INFO-actual data:    sales_id product_id store_id quantity total_sales   sale_date
+INFO     commonUtilities.utilities:utilities.py:133 actual data:    sales_id product_id store_id quantity total_sales   sale_date
 0        10     100000        4        9       153.0  2024-09-10
 1        11        101        4       15       210.0  2024-09-11
 2        12        102        5        9       243.0  2024-09-12
@@ -314,5 +313,5 @@ ing_for_fact_sales =====
 39       49        109        2       11       204.0  2024-10-19
 40       50        110        3       12       252.0  2024-10-20
 41       60        110        4        9       153.0  2024-09-10
-2026-08-02 10:16:41,803-ERROR-test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
-2026-08-02 10:16:41,860-INFO-mysql database connection has been terminated..
+ERROR    commonUtilities.utilities:utilities.py:161 test_data_loading_for_fact_sales validation failed :test_data_loading_for_fact_sales failed
+INFO     conftest:conftest.py:41 mysql database connection has been terminated..

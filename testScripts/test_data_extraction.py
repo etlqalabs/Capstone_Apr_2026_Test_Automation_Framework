@@ -40,6 +40,7 @@ class TestDataExtraction:
             self.base_utility.log_error(f"{test_case_name} validation failed: {e}")
             pytest.fail()
 
+    @pytest.mark.regression
     def test_data_extraction_from_products_file_to_stag(self,connect_to_mysql_database):
         try:
             test_case_name = inspect.currentframe().f_code.co_name
@@ -66,7 +67,8 @@ class TestDataExtraction:
     def test_data_extraction_from_inventory_file_to_stag(self,connect_to_mysql_database):
         pass
 
-
+    @pytest.mark.regression
+    @pytest.mark.smoke
     def test_data_extraction_from_supplier_file_to_stag(self,connect_to_mysql_database):
         test_case_name = inspect.currentframe().f_code.co_name
 

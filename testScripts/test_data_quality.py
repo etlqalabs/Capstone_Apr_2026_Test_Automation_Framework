@@ -128,7 +128,7 @@ class TestDataQuality:
     # ---------------------------------------------------------------------
     # File Existence Check
     # ---------------------------------------------------------------------
-
+    @pytest.mark.regression
     def test_data_quality_file_existence_check_for_inventory_data_xml_file(self):
         test_case_name = inspect.currentframe().f_code.co_name
 
@@ -153,7 +153,8 @@ class TestDataQuality:
     # ---------------------------------------------------------------------
     # File Size Check
     # ---------------------------------------------------------------------
-
+    @pytest.mark.regression
+    @pytest.mark.smoke
     def test_data_quality_file_size_check_for_inventory_data_xml_file(self):
         test_case_name = inspect.currentframe().f_code.co_name
 
